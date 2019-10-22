@@ -3,8 +3,8 @@ import {View, Text, Image,TextInput,  TouchableOpacity} from 'react-native'
 import styles from "../styles/styles";
 
 export default class Welcome extends Component {
-    goToPage = () => {
-        goToPage
+    goToPage = (page) => {
+        this.props.navigation.navigate(page)
     }
 render () { 
 return (<View>

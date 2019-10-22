@@ -12,6 +12,8 @@ import { StyleSheet} from 'react-native'
 import Welcome from './src/components/Welcome'
 import Login from './src/components/Login'
 import Register from './src/components/Register'
+import SelectItems from './src/components/SelectItems'
+import Home from './src/components/Home'
 const App = createStackNavigator({
   Welcome: {
     screen: Welcome,
@@ -22,6 +24,12 @@ const App = createStackNavigator({
   Register: {
     screen: Register,
   },
+  Select: {
+    screen: SelectItems,
+  },
+  Home: {
+    screen: Home,
+  }
 });
 
 export default createAppContainer(App);
