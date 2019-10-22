@@ -3,8 +3,35 @@ import {View, Text,TextInput, Image, TouchableOpacity, Picker} from 'react-nativ
 import styles from "../styles/styles";
 import { Dropdown } from 'react-native-material-dropdown';
 export default class SelectItems extends Component {
+   this.state = {
+      city : "",
+      Istate : "",
+      country : ""
+    }
     goToPage = (page) => {
-        this.props.navigation.navigate(page)
+       if(this.state.city && this.state.Istate && this.state.country)
+      {
+         this.props.navigation.navigate(page)
+      }
+      else
+      {
+        if(this.state.city == "" && this.state.Istate == "" &&  this.state.country == "" ) {
+             Alert.alert("please select all fields")
+        }
+        if(this.state.city == "")
+        {
+            Alert.alert("please select city")
+        }
+         if(this.state.Istate == "")
+        {
+            Alert.alert("please select state")
+        }
+         if(this.state.country == "")
+        {
+            Alert.alert("please select country")
+        }
+         
+      }
     }
 render () { 
     let data = [{
@@ -33,15 +60,18 @@ return (<View>
     <View style={{marginTop:10}}>
     <Dropdown
     containerStyle={styles.dropDown}
+    onChangeText(value => this.setState({ country:value})}
         label='Country'
         data={data}
       />
        <Dropdown
+        onChangeText(value => this.setState({ istate:value})}
     containerStyle={styles.dropDown}
         label='State'
         data={data2}
       />
        <Dropdown
+      onChangeText(value => this.setState({ city:value})}
     containerStyle={styles.dropDown}
         label='City'
         data={data3}

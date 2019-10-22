@@ -1,19 +1,45 @@
 import React, { Component} from 'react'
-import {View, Text, Image,TextInput,  TouchableOpacity} from 'react-native'
+import {View, Text, Image,TextInput, Alert} from 'react-native'
 import styles from "../styles/styles";
 
-export default class Welcome extends Component {
+export default class Login extends Component {
+
+     constructor (props) {
+    super (props)
+    this.state = {
+      email : "",
+      password : ""
+    }
+  }
     goToPage = (page) => {
-        this.props.navigation.navigate(page)
+      if(this.state.email && this.state.password)
+      {
+         this.props.navigation.navigate(page)
+      }
+      else
+      {
+        if(this.state.email == "" && this.state.password == "") {
+             Alert.alert("please enter email & password both")
+        }
+        if(this.state.email == "")
+        {
+            Alert.alert("please enter email")
+        }
+         if(this.state.password == "")
+        {
+            Alert.alert("please enter password")
+        }
+      }
+       
     }
 render () { 
 return (<View>
     <Image  style={styles.imageWidth} source={require('../images/kinder.jpg')} ></Image>
     <View style={{marginTop:10}}>
-    <TextInput style={styles.input} placeholder="Email"  placeholderTextColor = "black"></TextInput>
-    <TextInput style={styles.input} placeholder="Password"  placeholderTextColor = "black" secureTextEntry={true}></TextInput>
+    <TextInput value={this.state.email} onChangeText={(text)=>this.setState({ email:text})} style={styles.input} placeholder="Email"  placeholderTextColor = "black"></TextInput>
+    <TextInput value={this.state.password} style={styles.input} onChangeText={(text)=>this.setState({ email:text})} placeholder="Password"  placeholderTextColor = "black" secureTextEntry={true}></TextInput>
      <TouchableOpacity style={styles.buttonBackground}>
-        <Text onPress={this.goToPage.bind(this, 'Login')} style={styles.welcomeLoginText}>Login</Text>
+        <Text onPress={this.goToPage.bind(this, 'Home')} style={styles.welcomeLoginText}>Login</Text>
         </TouchableOpacity>
         <Text style={styles.textStyle2}>OR</Text>
         <TouchableOpacity style={styles.buttonBackgroundfb}>
