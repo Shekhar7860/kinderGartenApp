@@ -179,9 +179,12 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile project(':react-native-maps')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+  
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
     if (enableHermes) {
